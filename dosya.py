@@ -124,3 +124,15 @@ for filename in uploaded.keys():
     print("\n En çok geçen kategori:")
     print(f" {dominant_category} ({totals[dominant_category]} kelime)")
 
+
+import re
+from pdfminer.high_level import extract_text
+
+def count_total_words_from_pdf(pdf_path):
+    try:
+        text = extract_text(pdf_path)
+        words = re.findall(r'\b\w+\b', text)
+        print(f"Toplam kelime sayısı: {len(words)}")
+    except Exception as e:
+        print(f"Hata oluştu: {e}")
+count_total_words_from_pdf("unlocked.pdf")
